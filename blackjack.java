@@ -13,6 +13,7 @@ public class blackjack {
 		int total = cardOne + cardTwo;
 		String hitOrNo = "";
 		int newTotal = 0;
+		int counter = 0;
 
 		int compCardOne = rand.nextInt(10) + 1;
 		int compCardTwo = rand.nextInt(10) + 1;
@@ -20,14 +21,17 @@ public class blackjack {
 
 		System.out.println("Your card One is: " + cardOne + " Card Two: " + cardTwo);
 		System.out.println("Your total is: " + total);
-		while (hitOrNo.equalsIgnoreCase("Y") || newTotal > 21){
-			System.out.println("Would you like to hit? Type 'Y' for yes and 'N' for no");
-			hitOrNo = input.nextLine();
+		System.out.println("Would you like to hit? \n Type 'Y' for yes and 'N' for no");
+		hitOrNo = input.nextLine();
+		while (hitOrNo.equalsIgnoreCase("Y") && total < 21){
+			if (counter >= 1) {
+			System.out.println("Would you like to hit? \n Type 'Y' for yes and 'N' for no");
+			hitOrNo = input.nextLine(); }
+			counter++;
 			if (hitOrNo.equalsIgnoreCase("Y")) {
 				newTotal = rand.nextInt(10) + 1;
-				newTotal = newTotal + total;
-				System.out.print("You drew a " + (newTotal - total));
 				total = newTotal + total;
+				System.out.println("You drew a " + newTotal + " your new total is: " + total + " ");
 			}
 		}
 
@@ -40,11 +44,15 @@ public class blackjack {
 		}
 		else if (compTotal > total) {
 			System.out.println("The computer had: " + compTotal);
-			System.out.println("You have: " + newTotal);
+			System.out.println("You have: " + total);
 			System.out.println("Computer wins, better luck next time.");
 		}
 		else if (total > compTotal) {
 			System.out.println("Your total is: " + newTotal + " Computers total is: " + compTotal);
+			System.out.println("Congrats you win!!");
+		}
+		else {
+			System.out.println("this is very strange...");
 		}
 
 
